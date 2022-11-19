@@ -1,0 +1,192 @@
+<head>
+  <style>
+    :root {
+      --color-primary: blue;
+
+      --margin: 10px;
+      --thumb-size: 20px;
+
+      --transition: transform 0.5s ease-out;
+
+      /* private vars */
+      --slider-width: 100%;
+      --slider-height: 100%;
+    }
+
+    .slider-window {
+      position: relative;
+      overflow: hidden;
+
+      width: var(--slider-width);
+      height: var(--slider-height);
+    }
+
+    .slider-window > .slides {
+      height: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: var(--thumb-size);
+    }
+
+    .slider-window > .slides > .slide {
+      position: absolute;
+      transform: translateX(-100%);
+      z-index: -1;
+
+      width: var(--slider-width);
+      height: var(--slider-height);
+
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+
+      transition: var(--transition);
+    }
+
+    .slider-window > .slides > .thumb {
+      all: unset;
+      z-index: 1;
+      position: relative;
+
+      height: var(--thumb-size);
+      width: var(--thumb-size);
+
+      margin-bottom: var(--thumb-size);
+    }
+
+    .slider-window > .slides > .thumb::after {
+      content: "";
+      display: block;
+      position: absolute;
+
+      height: 100%;
+      width: 100%;
+
+      box-sizing: border-box;
+      background: var(--color-primary);
+      border-radius: 100%;
+
+      opacity: 0.2;
+      transition: opacity 0.1s ease;
+    }
+
+    .slider-window > .slides > .thumb:checked::after {
+      opacity: 1;
+    }
+
+    .slider-window > .slides > .thumb:checked ~ .slide {
+      transform: translateX(100%);
+    }
+
+    .slider-window > .slides > .thumb:checked + .arrow + .slide {
+      transform: translateX(0%);
+    }
+
+    .slider-window > .slides > .arrow {
+      position: absolute;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      left: 0;
+      padding: 0 var(--margin);
+
+      height: 100%;
+    }
+
+    .slider-window > .slides > .arrow:hover::before {
+      content: "";
+      position: absolute;
+
+      width: 100%;
+      height: 100%;
+
+      background: var(--color-primary);
+      opacity: 0.1;
+    }
+
+    .slider-window > .slides > .thumb:checked ~ .arrow {
+      display: none;
+    }
+
+    .slider-window > .slides > .thumb:focused + .arrow {
+      display: none;
+    }
+
+    .slider-window
+      > .slides
+      > .thumb:checked
+      + .arrow
+      + .slide
+      + .thumb
+      + .arrow {
+      left: auto;
+      display: flex;
+
+      right: 0;
+    }
+
+    .slider-window > .slides > .arrow::after,
+    .slider-window
+      > .slides
+      > .thumb:checked
+      + .arrow
+      + .slide
+      + .thumb
+      + .arrow::after {
+      padding: var(--margin);
+      color: var(--color-primary);
+    }
+
+    .slider-window > .slides > .arrow::after {
+      font-size: var(--thumb-size);
+
+      content: "◀";
+    }
+
+    .slider-window
+      > .slides
+      > .thumb:checked
+      + .arrow
+      + .slide
+      + .thumb
+      + .arrow::after {
+      content: "▶";
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slider-window">
+    <div class="slides">
+      <label for="3" class="arrow"></label>
+
+      <input type="radio" class="thumb" id="1" name="thumb-track" checked />
+      <label for="1" class="arrow"></label>
+      <div class="slide">Sample Text</div>
+
+      <input type="radio" class="thumb" id="2" name="thumb-track" />
+      <label for="2" class="arrow"></label>
+      <div class="slide">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
+          style="width: 100%; height: 100%; object-fit: cover"
+        />
+      </div>
+
+      <input type="radio" class="thumb" id="3" name="thumb-track" />
+      <label for="3" class="arrow"></label>
+      <div class="slide">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"
+        />
+      </div>
+
+      <input class="thumb" hidden />
+      <label for="1" class="arrow"></label>
+    </div>
+  </div>
+</body>
