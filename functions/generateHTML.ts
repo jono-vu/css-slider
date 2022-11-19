@@ -56,6 +56,7 @@ function generateHTML(input: GenerateHTMLInput) {
 }
 
 export { generateHTML };
+export type { GenerateHTMLInput };
 
 function minifyHTML(html: string) {
   return html

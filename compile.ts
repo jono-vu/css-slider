@@ -1,7 +1,6 @@
 import fs from "fs";
-import prettier from "prettier";
 
-import { generateCSS, generateHTML } from "./functions";
+import { generateCSS, generateHTML, generatePreview } from "./functions";
 import { options, slides } from "./input";
 
 fs.writeFileSync(
@@ -27,30 +26,12 @@ fs.writeFileSync(
 
 fs.writeFileSync(
   "./output/preview.html",
-  prettier.format(
-    /* html */ `
-    <html>
-      <head>
-        <title>Pure CSS Slider Preview</title>
-        <style>
-          ${generateCSS({
-            classPrefix: options.classPrefix,
-            variables: options.CSSVariables,
-            minify: options.minify,
-          })}
-        </style>
-      </head>
-      <body>
-        ${generateHTML({
-          classPrefix: options.classPrefix,
-          infinite: options.infinite,
-          minify: options.minify,
-          slides,
-        })}
-      </body>
-    </html>`,
-    { parser: "html" }
-  ),
+  generatePreview({
+    variables: options.CSSVariables,
+    classPrefix: options.classPrefix,
+    infinite: options.infinite,
+    slides,
+  }),
   "utf8"
 );
 

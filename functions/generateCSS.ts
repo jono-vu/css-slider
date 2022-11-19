@@ -196,6 +196,9 @@ function generateCSS(input: GenerateCSSInput) {
     : prettier.format(styles, { parser: "css" });
 }
 
+export { generateCSS };
+export type { GenerateCSSInput };
+
 function minifyCSS(css: string) {
   return css
     .replace(/([^0-9a-zA-Z\.#])\s+/g, "$1")
@@ -203,5 +206,3 @@ function minifyCSS(css: string) {
     .replace(/;}/g, "}")
     .replace(/\/\*.*?\*\//g, "");
 }
-
-export { generateCSS };

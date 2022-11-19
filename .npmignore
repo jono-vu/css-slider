@@ -1,0 +1,11 @@
+/example
+/output
+
+/.gitignore
+/.npmignore
+
+/compile.ts
+/input.ts
+
+/yarn-error.log
+/yarn.lock
