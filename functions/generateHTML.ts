@@ -1,4 +1,5 @@
 import prettier from "prettier";
+import parserHTML from "prettier/parser-html";
 
 interface GenerateHTMLInput {
   slides: string[];
@@ -52,7 +53,10 @@ function generateHTML(input: GenerateHTMLInput) {
 
   return input.minify
     ? minifyHTML(HTML)
-    : prettier.format(HTML, { parser: "html" });
+    : prettier.format(HTML, {
+        parser: "html",
+        plugins: [parserHTML],
+      });
 }
 
 export { generateHTML };

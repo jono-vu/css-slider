@@ -1,4 +1,5 @@
 import prettier from "prettier";
+import parserCSS from "prettier/parser-postcss";
 
 interface GenerateCSSInput {
   minify?: boolean;
@@ -193,7 +194,10 @@ function generateCSS(input: GenerateCSSInput) {
 
   return input.minify
     ? minifyCSS(styles)
-    : prettier.format(styles, { parser: "css" });
+    : prettier.format(styles, {
+        parser: "css",
+        plugins: [parserCSS],
+      });
 }
 
 export { generateCSS };

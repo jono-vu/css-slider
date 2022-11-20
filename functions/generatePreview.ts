@@ -1,4 +1,5 @@
 import prettier from "prettier";
+import parserHTML from "prettier/parser-html";
 
 import {
   generateCSS,
@@ -41,7 +42,10 @@ function generatePreview({
         })}
       </body>
     </html>`,
-    { parser: "html" }
+    {
+      parser: "html",
+      plugins: [parserHTML],
+    }
   );
 }
 
