@@ -1,7 +1,7 @@
 {
   "name": "@jono-vu/css-slider",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.3",
+  "main": "index.ts",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.11.9",
